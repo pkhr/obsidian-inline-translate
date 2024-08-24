@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
-	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"name": "inline-translate",
+	"version": "0.1.0",
+	"description": "Add translation to each line in your text.",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
@@ -19,6 +19,10 @@
 		"esbuild": "0.17.3",
 		"obsidian": "latest",
 		"tslib": "2.4.0",
-		"typescript": "4.7.4"
+		"typescript": "4.7.4",
+		"translate-google": "^1.5.0"		
+	},
+	"dependencies": {
+		"translate-google": "^1.5.0"
 	}
 }

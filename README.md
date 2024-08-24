@@ -1,96 +1,61 @@
-# Obsidian Sample Plugin
+# Obsidian Inline Translate Plugin
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+## Overview
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+The Obsidian Inline Translate Plugin is a handy tool for seamless translation within your Obsidian notes. It allows you to translate text on-the-fly, insert translations inline, and customize how translations are displayed.
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- Translate individual lines or selected text
+- Insert translations inline after each line of text
+- Quick-translate selected text to clipboard
+- Translate selected text and insert as a formatted block
+- Customizable translation block formats (code block, quotation, or callout)
+- Set preferred source languages and target language
 
-## First time developing plugins?
+## Installation
 
-Quick starting guide for new plugin devs:
+1. Open Obsidian and go to Settings > Community Plugins
+2. Disable Safe Mode if necessary
+3. Click "Browse" and search for "Translate in-line"
+4. Install the plugin and enable it
+5. Assign handy keyboard shortcuts
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+## Usage
 
-## Releasing new releases
+### Commands
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+The plugin adds three main commands:
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+1. **Translate each line of text and add translation after the line**
+   - Translates each line in the current selection (or current line if no selection)
+   - Inserts the translation below each original line
 
-## Adding your plugin to the community plugin list
+2. **Quick-translate selected text into clipboard**
+   - Translates the selected text
+   - Displays the translation in a notice
+   - Copies the translation to the clipboard
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+3. **Translate selection and insert translation**
+   - Translates the selected text
+   - Inserts the translation below the selection in the chosen block format
 
-## How to use
+Access these commands through the Obsidian Command Palette (Ctrl/Cmd + P).
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+### Settings
 
-## Manually installing the plugin
+Customize the plugin behavior in the settings tab:
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+- **Block Type**: Choose how translations are formatted (code block, quotation, or foldable callout)
+- **Preferred Languages**: Set a comma-separated list of preferred source languages, keep empty to auto-detect
+- **Target Language**: Set the default language to translate into
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+## Note
 
-## Funding URL
+This plugin uses the Google Translate API. Please be aware of any usage limitations or terms associated with the service.
 
-You can include funding URLs where people who use your plugin can financially support it.
+## Feedback and Support
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+If you encounter any issues or have suggestions for improvements, please open an issue on the GitHub repository.
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
-```
-
-If you have multiple URLs, you can also do:
-
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+Enjoy seamless translations in your Obsidian notes!

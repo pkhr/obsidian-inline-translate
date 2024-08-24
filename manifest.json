@@ -1,11 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
+	"id": "inline-translate",
+	"name": "Translate in-line",
+	"version": "0.1.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Add translation to each line in your text.",
+	"author": "Pavel Krhistolybov",
+	"authorUrl": "https://x.com/pkhr",
 	"isDesktopOnly": false
 }
