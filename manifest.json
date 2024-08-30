@@ -1,7 +1,7 @@
 {
 	"id": "inline-translate",
 	"name": "Translate in-line",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"minAppVersion": "0.15.0",
 	"description": "Add translation to each line in your text.",
 	"author": "Pavel Krhistolybov",
