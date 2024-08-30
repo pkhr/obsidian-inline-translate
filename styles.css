@@ -1,4 +1,5 @@
 
 .callout[data-callout="translation"] {
+	--callout-color: ;
     --callout-icon: lucide-languages;
 }

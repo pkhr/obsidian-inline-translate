@@ -1,11 +1,10 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-import translate from 'translate-google';
 
 // Define the structure for the plugin settings
 interface InlineTranslateSettings {
     blockType: 'codeblock' | 'quotation' | 'callout'; // Type of block to use for translations
     preferredLanguages: string[]; // List of preferred source languages
-    targetLanguage: string; // Target language for translations
+    targetLanguage: string; // Target language for transçlations
 }
 
 // Default settings for the plugin
@@ -88,17 +87,42 @@ export default class InlineTranslatePlugin extends Plugin {
 
     // Function to translate text using the Google Translate API
     async translateText(text: string): Promise<string> {
+
+        const base = "https://translate.googleapis.com/translate_a/single";
+        
+        // Construct the query parameters
+        const params = new URLSearchParams({
+          client: 'gtx',
+          dt: 't',
+          tl: this.settings.targetLanguage,
+          q: text
+        });
+      
+        // Add the 'sl' parameter only if 'from' is not empty
+        if (this.settings.preferredLanguages.length > 0) {
+          params.append('sl', this.settings.preferredLanguages[0]);
+        } else {
+            params.append('sl', 'auto');
+        }
+      
+        const url = `${base}?${params.toString()}`;
+      
         try {
-            const translatedText = await translate(text, { 
-                to: this.settings.targetLanguage, // Use the target language from settings
-                from: this.settings.preferredLanguages.length > 0 ? this.settings.preferredLanguages[0] : 'auto' // Use the first preferred language if available, otherwise auto-detect
-            });
-            return translatedText;
+          const response = await fetch(url);
+          const body = await response.json();
+      
+          if (!body || !body[0] || !body[0][0]) {
+            throw new Error("Translation not found");
+          }
+      
+          const translatedText = body[0].map(s => s[0]).join("");
+          return translatedText;
+      
         } catch (error) {
             console.error('Error translating text:', error);
             new Notice('Error translating text. Please try again later.');
             return text; // Return original text if translation fails
-        }
+        }        
     }
 
     // Function to format the translated text based on the selected block type
